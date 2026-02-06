@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { BsGear, BsCloud, BsCodeSquare, BsShieldCheck, 
          BsDiagram3, BsGraphUp, BsSpeedometer, BsBug, 
-         BsHouseDoor, BsList, BsX, BsLightbulb, BsRobot, BsPeople, BsChevronRight } from 'react-icons/bs';
+         BsHouseDoor, BsList, BsX, BsLightbulb, BsPeople, BsChevronRight } from 'react-icons/bs';
 
 const menuItems = [
   { icon: <BsHouseDoor size={20} />, name: "Home", path: "/" },
@@ -68,12 +69,16 @@ export default function Sidebar() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center shadow-lg">
-              <BsRobot className="text-accent-foreground" size={20} />
-            </div>
+            <Image
+              src="/cortex-logo.png"
+              alt="Cortex Logo"
+              width={48}
+              height={48}
+              className="h-12 w-12 object-contain"
+            />
             <div>
-              <h1 className="text-lg font-bold text-foreground">Cortex AI</h1>
-              <p className="text-xs text-muted">Agents Platform</p>
+              <h1 className="text-lg font-bold text-foreground">Cortex</h1>
+              <p className="text-xs text-muted">AI Platform</p>
             </div>
           </motion.div>
           
