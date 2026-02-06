@@ -16,9 +16,11 @@ import {
   BsBarChart
 } from 'react-icons/bs';
 
+type TestResult = { scenario: string; tps: number; errors: number };
+
 export default function LoadTestingPage() {
   const [testScenarios, setTestScenarios] = useState([{ name: 'Basic Scenario', load: 50 }]);
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState<TestResult[]>([]);
   const [loading, setLoading] = useState(false);
 
   // Add KPIs for load testing 
