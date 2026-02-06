@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { BsGear, BsCloud, BsCodeSquare, BsShieldCheck, 
          BsDiagram3, BsGraphUp, BsSpeedometer, BsBug, 
-         BsHouseDoor, BsList, BsX, BsLightbulb, BsRobot, BsPeople } from 'react-icons/bs';
+         BsHouseDoor, BsList, BsX, BsLightbulb, BsRobot, BsPeople, BsChevronRight } from 'react-icons/bs';
 
 const menuItems = [
   { icon: <BsHouseDoor size={20} />, name: "Home", path: "/" },
@@ -24,87 +24,161 @@ const menuItems = [
 export default function Sidebar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [activeItemIndex, setActiveItemIndex] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
   
   useEffect(() => {
-    // Find the active menu item index based on the current pathname
-    const activeIndex = menuItems.findIndex(item => item.path === pathname);
-    setActiveItemIndex(activeIndex >= 0 ? activeIndex : null);
-  }, [pathname]);
+    setIsMounted(true);
+  }, []);
   
   return (
     <>
       {/* Mobile Menu Button */}
-      <button 
-        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-gradient-to-r from-indigo-600 to-blue-500 text-white md:hidden hover:shadow-lg transition-all duration-200"
+      <motion.button 
+        className="fixed top-4 left-4 z-40 p-2 rounded-md bg-accent text-accent-foreground md:hidden hover:shadow-lg transition-all duration-200 flex items-center justify-center"
         onClick={() => setIsOpen(!isOpen)}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         {isOpen ? <BsX size={24} /> : <BsList size={24} />}
-      </button>
+      </motion.button>
+      
+      {/* Mobile Overlay */}
+      {isOpen && (
+        <motion.div
+          className="fixed inset-0 bg-black/50 z-20 md:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setIsOpen(false)}
+        />
+      )}
       
       {/* Sidebar */}
       <motion.div 
-        className={`fixed top-0 left-0 h-screen bg-white shadow-lg z-30 md:relative md:block ${isOpen ? 'block' : 'hidden'}`}
-        initial={{ width: 0 }}
-        animate={{ width: isOpen || typeof window !== 'undefined' && window.innerWidth >= 768 ? 280 : 0 }}
+        className="fixed top-0 left-0 h-screen w-72 bg-background border-r border-border z-30 md:relative md:block md:w-72"
+        initial={isMounted ? { x: -288 } : false}
+        animate={isMounted ? { x: isOpen || typeof window !== 'undefined' && window.innerWidth >= 768 ? 0 : -288 } : false}
         transition={{ duration: 0.3, ease: "easeInOut" }}
       >
-        <div className="p-6 h-full flex flex-col">
-          <div className="flex items-center mb-8">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-500 flex items-center justify-center mr-3 shadow-md">
-              <BsRobot className="text-white" size={20} />
+        <div className="p-6 h-full flex flex-col overflow-y-auto">
+          {/* Logo Section */}
+          <motion.div 
+            className="flex items-center gap-3 mb-8 pb-6 border-b border-border"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="h-10 w-10 rounded-lg bg-gradient-to-br from-accent to-accent/70 flex items-center justify-center shadow-lg">
+              <BsRobot className="text-accent-foreground" size={20} />
             </div>
-            <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-500">DevOps AI Agents</h1>
-          </div>
+            <div>
+              <h1 className="text-lg font-bold text-foreground">DevOps AI</h1>
+              <p className="text-xs text-muted">Agents Platform</p>
+            </div>
+          </motion.div>
           
+          {/* Navigation Section */}
           <nav className="flex-grow">
-            <ul className="space-y-1">
-              {menuItems.map((item, index) => (
-                <li key={item.path}>
-                  <Link 
-                    href={item.path}
-                    className={`flex items-center py-3 px-4 rounded-lg transition-all duration-200 ${
-                      pathname === item.path 
-                        ? 'bg-gradient-to-r from-indigo-50 to-blue-50 text-indigo-700 font-medium shadow-sm border-l-4 border-indigo-600' 
-                        : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'
-                    }`}
-                    onClick={() => setIsOpen(false)}
+            <p className="text-xs font-semibold text-muted uppercase tracking-wider mb-3 px-2">Menu</p>
+            <ul className="space-y-2">
+              {menuItems.map((item, index) => {
+                const isActive = pathname === item.path;
+                return (
+                  <motion.li 
+                    key={item.path}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
                   >
-                    <span className={`mr-3 transition-transform duration-200 ${pathname === item.path ? 'text-indigo-600 transform scale-110' : ''}`}>
-                      {item.icon}
-                    </span>
-                    <span>{item.name}</span>
-                    {pathname === item.path && (
+                    <Link 
+                      href={item.path}
+                      className={`relative group flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 overflow-hidden ${
+                        isActive 
+                          ? 'text-accent' 
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {/* Background highlight for active item */}
                       <motion.div
-                        className="ml-auto w-2 h-2 rounded-full bg-gradient-to-r from-indigo-600 to-blue-500"
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ duration: 0.3 }}
+                        className="absolute inset-0 bg-accent/10"
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: isActive ? 1 : 0, x: isActive ? 0 : -20 }}
+                        transition={{ duration: 0.2 }}
                       />
-                    )}
-                  </Link>
-                </li>
-              ))}
+                      
+                      {/* Left border accent */}
+                      <motion.div
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-accent rounded-r"
+                        initial={{ height: 0 }}
+                        animate={{ height: isActive ? 24 : 0 }}
+                        transition={{ duration: 0.2 }}
+                      />
+                      
+                      {/* Icon */}
+                      <motion.span 
+                        className={`relative z-10 transition-all duration-200 ${isActive ? 'text-accent scale-110' : 'text-muted-foreground group-hover:text-accent'}`}
+                        animate={{ rotate: isActive ? 0 : 0 }}
+                      >
+                        {item.icon}
+                      </motion.span>
+                      
+                      {/* Label */}
+                      <span className="relative z-10 font-medium text-sm">{item.name}</span>
+                      
+                      {/* Chevron for active item */}
+                      {isActive && (
+                        <motion.span
+                          className="ml-auto text-accent"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          <BsChevronRight size={16} />
+                        </motion.span>
+                      )}
+                    </Link>
+                  </motion.li>
+                );
+              })}
             </ul>
           </nav>
           
-          <div className="mt-6">
-            <div className="p-4 rounded-lg bg-gradient-to-r from-indigo-600/10 via-purple-500/10 to-blue-500/10 border border-indigo-100 relative overflow-hidden shadow-sm">
-              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-indigo-600 via-purple-500 to-blue-500"></div>
-              <div className="flex items-start">
-                <BsLightbulb className="text-indigo-600 mt-1 mr-3" size={18} />
-                <div>
-                  <h4 className="text-sm font-medium text-gray-800 mb-1">AI Assistant</h4>
-                  <p className="text-xs text-gray-600 mb-2">
-                    Need help with your DevOps workflows? Ask our AI assistant!
-                  </p>
-                  <button className="text-xs bg-white hover:bg-indigo-50 text-indigo-700 font-medium py-1.5 px-3 rounded-md transition-colors shadow-sm border border-indigo-100">
-                    Get AI Support
-                  </button>
-                </div>
+          {/* AI Assistant Card */}
+          <motion.div 
+            className="mt-6 p-4 rounded-lg bg-gradient-to-br from-accent/10 to-accent/5 border border-accent/20 relative overflow-hidden group"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            whileHover={{ borderColor: 'rgba(6, 182, 212, 0.4)' }}
+          >
+            {/* Accent line */}
+            <div className="absolute top-0 left-0 w-full h-0.5 bg-gradient-to-r from-accent to-transparent"></div>
+            
+            {/* Content */}
+            <div className="flex items-start gap-3 relative z-10">
+              <motion.div
+                className="flex-shrink-0"
+                whileHover={{ rotate: 10 }}
+                transition={{ duration: 0.3 }}
+              >
+                <BsLightbulb className="text-accent" size={18} />
+              </motion.div>
+              <div className="flex-grow">
+                <h4 className="text-sm font-semibold text-foreground mb-1">AI Assistant</h4>
+                <p className="text-xs text-muted-foreground leading-relaxed mb-3">
+                  Get intelligent help with your DevOps workflows anytime
+                </p>
+                <motion.button 
+                  className="w-full text-xs font-medium py-1.5 px-3 rounded-md bg-accent text-accent-foreground hover:shadow-lg transition-all duration-200 border border-accent/50"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Launch Chat
+                </motion.button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </motion.div>
     </>
