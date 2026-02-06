@@ -45,7 +45,7 @@ export default function MultiModalChat() {
   const [messages, setMessages] = useState<Message[]>([
     { 
       role: 'assistant', 
-      content: 'Hello! I\'m your DevOps AI Assistant. I can help you with text, images, videos, and files. How can I assist you today? 🚀',
+      content: 'Hello! I\'m your Cortex AI Assistant. I can help you with text, images, videos, and files. How can I assist you today? 🚀',
       timestamp: new Date() 
     }
   ]);
@@ -426,7 +426,7 @@ export default function MultiModalChat() {
             </div>
             <div>
               <h3 className="font-semibold flex items-center gap-2">
-                DevOps AI Assistant
+                Cortex AI Assistant
                 <BsLightningCharge className="text-yellow-300" size={14} />
               </h3>
               <div className="text-xs text-white/80 flex items-center gap-1.5">
