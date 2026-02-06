@@ -7,9 +7,9 @@ export default function AboutPage() {
   const teamMembers = [
     {
       name: "Yash Kavaiya",
-      role: "DevOps Engineer & AI Specialist",
+      role: "Cortex Engineer & AI Specialist",
       image: "/Images/yash.jpg", // You can replace with actual image path
-      bio: "Passionate about automating infrastructure and leveraging AI to solve complex DevOps challenges.",
+      bio: "Passionate about automating infrastructure and leveraging AI to solve complex Cortex challenges.",
       skills: ["Cloud Infrastructure", "CI/CD", "AI/ML", "Container Orchestration"],
       github: "https://github.com/Yash-Kavaiya",
       linkedin: "#",
@@ -17,9 +17,9 @@ export default function AboutPage() {
     },
     {
       name: "Sonigra Chetan",
-      role: "DevOps Engineer & Security Specialist",
+      role: "Cortex Engineer & Security Specialist",
       image: "/Images/chetan.jpg", // You can replace with actual image path
-      bio: "Focused on building secure, scalable systems and implementing best practices in DevOps workflows.",
+      bio: "Focused on building secure, scalable systems and implementing best practices in Cortex workflows.",
       skills: ["Security Scanning", "Performance Monitoring", "Load Testing", "Incident Response"],
       github: "#",
       linkedin: "#",
@@ -31,7 +31,7 @@ export default function AboutPage() {
     {
       icon: <BsRocket size={32} />,
       title: "Innovation",
-      description: "Constantly exploring new AI technologies to enhance DevOps practices"
+      description: "Constantly exploring new AI technologies to enhance Cortex practices"
     },
     {
       icon: <BsLightbulb size={32} />,
@@ -46,7 +46,7 @@ export default function AboutPage() {
     {
       icon: <BsShieldCheck size={32} />,
       title: "Security",
-      description: "Prioritizing security in every aspect of our DevOps workflows"
+      description: "Prioritizing security in every aspect of our Cortex workflows"
     }
   ];
 
@@ -64,7 +64,7 @@ export default function AboutPage() {
             About Us
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            We are a team of passionate DevOps engineers dedicated to revolutionizing operations through AI-powered automation and intelligent workflows.
+            We are a team of passionate Cortex engineers dedicated to revolutionizing operations through AI-powered automation and intelligent workflows.
           </p>
         </motion.div>
 
@@ -77,7 +77,7 @@ export default function AboutPage() {
         >
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Our Mission</h2>
           <p className="text-lg text-gray-700 leading-relaxed">
-            To empower development teams with cutting-edge AI agents that streamline DevOps processes, 
+            To empower development teams with cutting-edge AI agents that streamline Cortex processes, 
             enhance security, and improve operational efficiency. We believe in the power of automation 
             to transform how software is built, deployed, and maintained.
           </p>
@@ -189,7 +189,7 @@ export default function AboutPage() {
         >
           <h2 className="text-3xl font-bold mb-4">Let's Build Something Amazing Together</h2>
           <p className="text-lg mb-6 opacity-90">
-            Interested in collaborating or learning more about our AI-powered DevOps solutions?
+            Interested in collaborating or learning more about our AI-powered Cortex solutions?
           </p>
           <button className="bg-white text-indigo-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors shadow-lg">
             Get in Touch

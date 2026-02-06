@@ -3,8 +3,8 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 
 export const metadata: Metadata = {
-  title: "DevOps AI Agents",
-  description: "AI-powered DevOps operation assistants",
+  title: "Cortex AI Agents",
+  description: "AI-powered Cortex operation assistants",
 };
 
 export default function RootLayout({

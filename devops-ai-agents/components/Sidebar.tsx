@@ -72,7 +72,7 @@ export default function Sidebar() {
               <BsRobot className="text-accent-foreground" size={20} />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-foreground">DevOps AI</h1>
+              <h1 className="text-lg font-bold text-foreground">Cortex AI</h1>
               <p className="text-xs text-muted">Agents Platform</p>
             </div>
           </motion.div>
@@ -167,7 +167,7 @@ export default function Sidebar() {
               <div className="flex-grow">
                 <h4 className="text-sm font-semibold text-foreground mb-1">AI Assistant</h4>
                 <p className="text-xs text-muted-foreground leading-relaxed mb-3">
-                  Get intelligent help with your DevOps workflows anytime
+                  Get intelligent help with your Cortex workflows anytime
                 </p>
                 <motion.button 
                   className="w-full text-xs font-medium py-1.5 px-3 rounded-md bg-accent text-accent-foreground hover:shadow-lg transition-all duration-200 border border-accent/50"

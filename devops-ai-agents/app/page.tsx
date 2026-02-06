@@ -101,11 +101,11 @@ export default function Home() {
               >
                 <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-6">
                   <BsStars className="mr-2" size={14} />
-                  AI-Powered DevOps Platform
+                  AI-Powered Cortex Platform
                 </div>
                 
                 <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight text-balance">
-                  Automate DevOps with AI Intelligence
+                  Automate Cortex with AI Intelligence
                 </h1>
                 
                 <p className="text-xl text-foreground/60 mb-8 leading-relaxed max-w-lg text-pretty">
@@ -188,7 +188,7 @@ export default function Home() {
         <section className="py-12 border-y border-foreground/5">
           <div className="container mx-auto px-4">
             <div className="text-center mb-8">
-              <p className="text-sm text-foreground/60 font-medium">Trusted by DevOps Teams Worldwide</p>
+              <p className="text-sm text-foreground/60 font-medium">Trusted by Cortex Teams Worldwide</p>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
               {['Vercel', 'Netflix', 'Stripe', 'GitHub'].map((company, i) => (
@@ -223,7 +223,7 @@ export default function Home() {
                 transition={{ delay: 0.1 }}
                 className="text-xl text-foreground/60 max-w-2xl mx-auto text-pretty"
               >
-                Eight specialized AI agents working together to streamline your entire DevOps pipeline
+                Eight specialized AI agents working together to streamline your entire Cortex pipeline
               </motion.p>
             </div>
             
@@ -257,7 +257,7 @@ export default function Home() {
                 </h2>
                 
                 {[
-                  { title: "Reduce Manual Work", desc: "Automate 80% of routine DevOps tasks" },
+                  { title: "Reduce Manual Work", desc: "Automate 80% of routine Cortex tasks" },
                   { title: "Faster Deployments", desc: "Cut deployment time in half with intelligent pipelines" },
                   { title: "Enhanced Security", desc: "Real-time vulnerability detection and remediation" },
                   { title: "Cost Optimization", desc: "Reduce infrastructure costs by up to 40%" }
@@ -305,7 +305,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
             >
               <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
-                Ready to Transform Your DevOps?
+                Ready to Transform Your Cortex?
               </h2>
               <p className="text-xl text-foreground/60 mb-8 text-pretty">
                 Start automating your infrastructure and infrastructure management today. No credit card required.
