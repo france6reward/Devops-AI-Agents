@@ -1,7 +1,7 @@
 "use client";
 
 import { FeatureCard } from '@/components/FeatureCard';
-import { BsGear, BsCloud, BsCodeSquare, BsShieldCheck, BsDiagram3, BsGraphUp, BsSpeedometer, BsBug, BsRobot, BsArrowRight, BsStars, BsLightning } from 'react-icons/bs';
+import { BsGear, BsCloud, BsCodeSquare, BsShieldCheck, BsDiagram3, BsGraphUp, BsSpeedometer, BsBug, BsRobot, BsArrowRight, BsStars, BsLightning, BsCheck } from 'react-icons/bs';
 import { motion } from 'framer-motion';
 import MultiModalChat from '@/components/MultiModalChat';
 
@@ -74,187 +74,257 @@ export default function Home() {
   };
 
   return (
-    <div className="relative">
-      {/* AI-themed background effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/2 -left-40 w-96 h-96 bg-blue-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 right-1/4 w-96 h-96 bg-purple-600/5 rounded-full blur-3xl"></div>
+    <div className="relative bg-background">
+      {/* Grid background pattern */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
 
-      <div className="container mx-auto relative z-10 px-4 py-12">
-        {/* Hero section with gradient */}
-        <div className="relative overflow-hidden mb-16 rounded-2xl bg-gradient-to-r from-indigo-700 via-purple-700 to-blue-700 shadow-xl">
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-0 left-0 w-full h-full">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} 
-                  className="absolute rounded-full bg-white/20" 
-                  style={{ 
-                    width: `${Math.random() * 300 + 50}px`, 
-                    height: `${Math.random() * 300 + 50}px`,
-                    top: `${Math.random() * 100}%`,
-                    left: `${Math.random() * 100}%`,
-                    opacity: Math.random() * 0.5
-                  }}
-                ></div>
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="relative min-h-screen flex items-center justify-center pt-20 pb-12 px-4">
+          {/* Accent dots */}
+          <div className="absolute top-20 right-20 w-1 h-1 bg-accent rounded-full"></div>
+          <div className="absolute top-40 left-10 w-1 h-1 bg-accent rounded-full"></div>
+          <div className="absolute bottom-40 right-32 w-1 h-1 bg-accent rounded-full"></div>
+          
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              {/* Left content */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <div className="inline-flex items-center px-3 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-sm font-medium mb-6">
+                  <BsStars className="mr-2" size={14} />
+                  AI-Powered DevOps Platform
+                </div>
+                
+                <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight text-balance">
+                  Automate DevOps with AI Intelligence
+                </h1>
+                
+                <p className="text-xl text-foreground/60 mb-8 leading-relaxed max-w-lg text-pretty">
+                  Empower your team to build and deploy faster. Let intelligent agents handle your CI/CD, infrastructure, and monitoring while you focus on innovation.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center justify-center bg-accent text-background hover:bg-accent/90 font-semibold px-6 py-3 rounded-full transition-all shadow-lg"
+                  >
+                    <BsLightning className="mr-2" size={18} />
+                    Get Started
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="inline-flex items-center justify-center bg-foreground/5 border border-foreground/10 text-foreground hover:bg-foreground/10 font-semibold px-6 py-3 rounded-full transition-all"
+                  >
+                    Watch Demo
+                    <BsArrowRight className="ml-2" size={18} />
+                  </motion.button>
+                </div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-8">
+                  <div>
+                    <div className="text-2xl font-bold text-accent mb-1">8</div>
+                    <div className="text-sm text-foreground/60">AI Modules</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent mb-1">99.9%</div>
+                    <div className="text-sm text-foreground/60">Uptime</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent mb-1">24/7</div>
+                    <div className="text-sm text-foreground/60">Support</div>
+                  </div>
+                </div>
+              </motion.div>
+
+              {/* Right - Visual */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="hidden lg:flex justify-center"
+              >
+                <div className="relative w-full h-full max-w-md">
+                  {/* Animated circle background */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/20 to-accent/5 blur-2xl"></div>
+                  
+                  <div className="relative p-8">
+                    <div className="rounded-xl border border-foreground/10 bg-background/50 backdrop-blur-sm p-6">
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="text-sm font-semibold text-foreground/60">Agent Status</span>
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {['CI/CD Pipeline', 'Cloud Infrastructure', 'Security Scanning'].map((item, i) => (
+                          <div key={i} className="flex items-center gap-3">
+                            <div className="w-6 h-6 rounded bg-accent/20 flex items-center justify-center">
+                              <BsCheck className="text-accent" size={14} />
+                            </div>
+                            <span className="text-sm text-foreground/80">{item}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust Indicators */}
+        <section className="py-12 border-y border-foreground/5">
+          <div className="container mx-auto px-4">
+            <div className="text-center mb-8">
+              <p className="text-sm text-foreground/60 font-medium">Trusted by DevOps Teams Worldwide</p>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
+              {['Vercel', 'Netflix', 'Stripe', 'GitHub'].map((company, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: i * 0.1 }}
+                  className="text-sm font-semibold text-foreground/40"
+                >
+                  {company}
+                </motion.div>
               ))}
             </div>
           </div>
-          
-          <div className="relative p-8 md:p-12 flex flex-col md:flex-row items-center">
-            <div className="mb-8 md:mb-0 md:w-2/3">
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium mb-4">
-                  <BsStars className="mr-2 text-yellow-300" />
-                  AI-Powered DevOps Platform
-                </div>
-                <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                  DevOps AI Agent Platform
-                </h1>
-                <p className="text-lg text-white/80 mb-6 max-w-2xl">
-                  Leverage the power of artificial intelligence to streamline your DevOps workflows, 
-                  automate routine tasks, and optimize your infrastructure.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <button className="flex items-center bg-white text-indigo-700 hover:bg-indigo-50 font-medium px-5 py-2.5 rounded-lg transition-colors shadow-md">
-                    <BsLightning className="mr-2" />
-                    Get Started
-                  </button>
-                  <button className="flex items-center bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white font-medium px-5 py-2.5 rounded-lg transition-colors">
-                    Learn More
-                    <BsArrowRight className="ml-2" />
-                  </button>
-                </div>
-              </motion.div>
-            </div>
-            <div className="md:w-1/3 flex justify-center">
-              <motion.div 
-                className="relative"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <div className="w-40 h-40 md:w-56 md:h-56 rounded-full bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-indigo-500/20 backdrop-blur-sm p-1 flex items-center justify-center">
-                  <div className="w-full h-full rounded-full border-2 border-white/20 flex items-center justify-center">
-                    <BsRobot className="text-white w-16 h-16 md:w-24 md:h-24" />
-                  </div>
-                </div>
-                <div className="absolute top-0 left-0 right-0 bottom-0 animate-spin-slow opacity-70" style={{ animationDuration: '20s' }}>
-                  {[...Array(8)].map((_, i) => (
-                    <div key={i} className="absolute w-2 h-2 bg-white rounded-full" 
-                    style={{ 
-                      top: `calc(50% + ${Math.sin(i * Math.PI / 4) * 140}px)`,
-                      left: `calc(50% + ${Math.cos(i * Math.PI / 4) * 140}px)`
-                    }}></div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
+        </section>
 
-        {/* Features heading */}
-        <div className="text-center mb-12">
-          <motion.h2 
-            className="text-2xl md:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 inline-block mb-3"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            AI-Enhanced DevOps Features
-          </motion.h2>
-          <motion.p 
-            className="text-gray-600 max-w-2xl mx-auto"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Select an operation to get started with AI-powered automation, optimization, and insights.
-          </motion.p>
-        </div>
-        
-        {/* Features grid */}
-        <motion.div 
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {features.map((feature, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <FeatureCard {...feature} />
-            </motion.div>
-          ))}
-        </motion.div>
-
-        {/* AI platform benefits section */}
-        <div className="mt-20 mb-16">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">Why AI-Powered DevOps?</h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Our platform uses advanced AI algorithms to supercharge your DevOps workflows
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Automate Routine Tasks",
-                description: "Let AI handle repetitive DevOps tasks while your team focuses on innovation",
-                icon: <BsGear className="text-indigo-600" size={24} />
-              },
-              {
-                title: "Optimize Resources",
-                description: "AI continuously analyzes and optimizes your cloud infrastructure for cost and performance",
-                icon: <BsCloud className="text-blue-600" size={24} />
-              },
-              {
-                title: "Detect Issues Early",
-                description: "Proactive issue detection and remediation before they impact your systems",
-                icon: <BsShieldCheck className="text-purple-600" size={24} />
-              }
-            ].map((benefit, index) => (
-              <motion.div 
-                key={index} 
-                className="bg-white p-6 rounded-xl shadow-sm border border-gray-100"
+        {/* Features Grid */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-6xl">
+            <div className="text-center mb-16">
+              <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
+                className="text-4xl md:text-5xl font-bold text-foreground mb-4 text-balance"
               >
-                <div className="w-12 h-12 bg-indigo-50 rounded-lg flex items-center justify-center mb-4">
-                  {benefit.icon}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-800 mb-2">{benefit.title}</h3>
-                <p className="text-gray-600">{benefit.description}</p>
-              </motion.div>
-            ))}
+                Powerful AI-Powered Capabilities
+              </motion.h2>
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.1 }}
+                className="text-xl text-foreground/60 max-w-2xl mx-auto text-pretty"
+              >
+                Eight specialized AI agents working together to streamline your entire DevOps pipeline
+              </motion.p>
+            </div>
+            
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {features.map((feature, index) => (
+                <motion.div key={index} variants={itemVariants}>
+                  <FeatureCard {...feature} />
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </section>
+
+        {/* Why Choose Section */}
+        <section className="py-20 px-4 bg-foreground/2">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="space-y-6"
+              >
+                <h2 className="text-4xl font-bold text-foreground text-balance">
+                  Why Choose Our AI Platform?
+                </h2>
+                
+                {[
+                  { title: "Reduce Manual Work", desc: "Automate 80% of routine DevOps tasks" },
+                  { title: "Faster Deployments", desc: "Cut deployment time in half with intelligent pipelines" },
+                  { title: "Enhanced Security", desc: "Real-time vulnerability detection and remediation" },
+                  { title: "Cost Optimization", desc: "Reduce infrastructure costs by up to 40%" }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="flex gap-4"
+                  >
+                    <div className="flex-shrink-0">
+                      <div className="flex items-center justify-center h-8 w-8 rounded-lg bg-accent/20">
+                        <BsCheck className="text-accent" size={20} />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                      <p className="text-foreground/60">{item.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="grid grid-cols-2 gap-4"
+              >
+                {[1, 2, 3, 4].map((i) => (
+                  <div key={i} className="rounded-lg border border-foreground/10 bg-background/50 backdrop-blur-sm h-32 flex items-center justify-center">
+                    <BsRobot className="text-foreground/20" size={40} />
+                  </div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-20 px-4">
+          <div className="container mx-auto max-w-3xl text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6 text-balance">
+                Ready to Transform Your DevOps?
+              </h2>
+              <p className="text-xl text-foreground/60 mb-8 text-pretty">
+                Start automating your infrastructure and infrastructure management today. No credit card required.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="inline-flex items-center justify-center bg-accent text-background hover:bg-accent/90 font-semibold px-8 py-3 rounded-full transition-all shadow-lg"
+              >
+                Get Started Free
+                <BsArrowRight className="ml-2" size={18} />
+              </motion.button>
+            </motion.div>
+          </div>
+        </section>
       </div>
       
       {/* Multi-Modal AI Chat Widget */}
       <MultiModalChat />
-      
-      {/* Add custom animation class to your global CSS */}
-      <style jsx global>{`
-        @keyframes spin-slow {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 20s linear infinite;
-        }
-      `}</style>
     </div>
   );
 }
